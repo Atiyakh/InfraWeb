@@ -59,7 +59,6 @@ class AsyncServer:
             self.far_host_peername = writer.get_extra_info('peername')
             request_content = await reader.read(65_000)
             generated_response = await request_processor_(request_content, self.far_host_peername, mapping)
-            print(generated_response)
             if generated_response:
                 response = generated_response.response
             else:
