@@ -62,7 +62,7 @@ class AsyncServer:
             if generated_response:
                 response = generated_response.response
             else:
-                response = b'HTTP/1.1 404 Not Found\n\r\n\r404 Page Not Found'
+                response = b'HTTP/1.1 404 Not Found\\n\\r\\n\\r404 Page Not Found'
             writer.write(response)
             await writer.drain()
             writer.close()
@@ -76,8 +76,8 @@ class AsyncServer:
         try:
             self.host = gethostbyname(gethostname())
             if self.secure:
-                self.certificatePath = os.path.join(pathlib.Path(__file__).parent, 'Certificates\\ssl_tls_certificate.pem')
-                self.privatKeyPath = os.path.join(pathlib.Path(__file__).parent, 'Certificates\\server_private_key.pem')
+                self.certificatePath = os.path.join(pathlib.Path(__file__).parent, 'Certificates/ssl_tls_certificate.pem')
+                self.privatKeyPath = os.path.join(pathlib.Path(__file__).parent, 'Certificates/server_private_key.pem')
                 self.context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
                 self.context.load_cert_chain(
                     certfile=self.certificatePath, 
